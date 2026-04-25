@@ -1,0 +1,22 @@
+# netlify.toml — S.H.A.S. Educativo 2026
+# Configuración de deployment para Netlify
+
+[build]
+  publish = "."
+
+# Headers por defecto (complementario a _headers)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Opcional: preview deploys
+[context.deploy-preview]
+  command = "echo 'Deploy preview ready'"

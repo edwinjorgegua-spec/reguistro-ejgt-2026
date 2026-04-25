@@ -1,0 +1,26 @@
+# Netlify _headers — S.H.A.S. Educativo 2026
+# Optimización para Bolivia (educación rural)
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(self), microphone=(), geolocation=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# HTML: actualizaciones inmediatas
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Iconos PNG: cache largo (rara vez cambian)
+/icon-*.png
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/png
+
+# Manifest: sin cache para que los cambios lleguen rápido
+/manifest.webmanifest
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: application/manifest+json

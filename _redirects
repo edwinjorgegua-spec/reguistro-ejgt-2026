@@ -1,0 +1,5 @@
+# Netlify _redirects — S.H.A.S. Educativo 2026
+# Redirige URLs antiguas o typos al archivo principal
+
+# Catch-all: cualquier ruta desconocida → index.html (SPA behavior)
+/*    /index.html   200
