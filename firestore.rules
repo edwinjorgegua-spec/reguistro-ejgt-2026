@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Coleccion 'usuarios' — datos por código de acceso
+    // Cada documento es identificado por el código del docente
+    match /usuarios/{userCode} {
+      
+      // PERMITIR LEER y ESCRIBIR si:
+      // 1. El código tiene formato válido (16 chars + guiones)
+      // 2. El tamaño del documento es razonable (max 1 MB)
+      // 3. Solo se aceptan campos esperados
+      
+      allow read: if userCode.matches('^[A-Z0-9-]{15,30}$');
+      
+      allow write: if userCode.matches('^[A-Z0-9-]{15,30}$')
+                   && request.resource.size < 1048576  // max 1 MB
+                   && request.resource.data.keys().hasOnly(['store', 'uploadedAt', 'uploadedAtIso', 'device', 'version', 'sizeBytes']);
+    }
+    
+    // Bloquear todo lo demás
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
